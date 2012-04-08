@@ -1,0 +1,55 @@
+fun distance(x, y)
+	return x * x + y * y
+
+
+
+
+
+OP_ARI = +-*/%±
+OP_COMP = <>=!
+OP_LOG = &|?:
+OP_OTHER = @#$^\~
+OP_PART = OP_ARI | OP_COMP | OP_LOG | OP_OTHER
+NAME_START = [a-z][A-Z][0-9]_
+NAME_PART = NAME_START | OP_PART
+SEPARATOR = []{}();,
+SEPARATOR_OP = .
+
+NAME = NAME_START NAME_PART*
+OP = OP_PART+
+
+/*
+module XYZ
+	exports X Y Z
+	imports ABC
+	imports DEF(D)
+	imports JKL as J
+*/
+Module = 'module' NAME Export? Import*
+Export = BL 'exports' NAME+
+Import = BL 'imports' NAME ['(' NAME+ ')']? [as NAME]?
+
+/*
+data Either a b
+	Left a
+	Right b
+*/
+Data = 'data' NAME NAME* DataElement+
+DataElement = BL NAME NAME*
+
+/*
+type MyEither a int = Either a int
+*/
+Type = 'type' NAME NAME* '=' NAME NAME*
+
+/*
+record Car
+	company
+	model
+	year
+*/
+Record = 'record' NAME NAME+
+
+
+
+

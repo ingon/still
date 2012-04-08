@@ -1,0 +1,5 @@
+ - string literals
+ - modules
+ - sys module
+ - for - if not iterator try call iterator on it
+ - tail calls
