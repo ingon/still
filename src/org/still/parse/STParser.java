@@ -37,6 +37,9 @@ public class STParser extends LookAheadParser<STExpression> {
         tokenizer.registerOperator("*", 70);
         tokenizer.registerOperator("/", 70);
         tokenizer.registerOperator("%", 70);
+        
+        tokenizer.registerOperator("++", 100);
+        tokenizer.registerOperator("--", 100);
     }
 
     public List<STStatement> parseModule() {

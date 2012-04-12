@@ -7,8 +7,7 @@ import java.util.Map;
 import org.still.parse.STParser;
 import org.still.parse.ast.STBlockUtils;
 import org.still.parse.ast.STStatement;
-import org.still.runtime.fun.STGenericFunction;
-import org.still.runtime.fun.STPrimitiveGenericFunction;
+import org.still.runtime.fun.STPrimitiveFunction;
 
 public class STModule {
     public final List<STStatement> statements;
@@ -53,27 +52,14 @@ public class STModule {
     }
     
     private void importSystem() {
-        STGenericFunction addFun = new STPrimitiveGenericFunction() {
-            @Override
-            protected double op(double l, double r) {
-                return l + r;
-            }
+        STPrimitiveOperators.importAll(moduleEnv);
 
+        moduleEnv.defVal("print", new STPrimitiveFunction(1) {
             @Override
-            protected float op(float l, float r) {
-                return l + r;
+            protected Object invoke(Object o) {
+                System.out.println(o);
+                return o;
             }
-
-            @Override
-            protected long op(long l, long r) {
-                return l + r;
-            }
-
-            @Override
-            protected int op(int l, int r) {
-                return l + r;
-            }
-        };
-        moduleEnv.defVal("+", addFun);
+        });
     }
 }

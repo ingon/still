@@ -22,8 +22,8 @@ public class ST {
 //		
 //		System.out.println("VALUE: \r\n" + res);
 		
-//	    FileReader reader = new FileReader("src-still/main.st");
-	    FileReader reader = new FileReader("src-still/tmp.st");
+	    FileReader reader = new FileReader("src-still/main.st");
+//	    FileReader reader = new FileReader("src-still/tmp.st");
 //	    FileReader reader = new FileReader("src-euler/eul1_i.st");
 	    Object res = Still.eval(reader);
 	    System.out.println("VALUE: \r\n" + res);
